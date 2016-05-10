@@ -8,7 +8,7 @@ before_install:
     - go version
     - go get github.com/smartystreets/goconvey
     - go get github.com/mattn/goveralls
-    - go get github.com/golang/tools/tree/master/cmd/cover
+    - go get golang.org/x/tools/cmd/cover 
     - pip install --user codecov
 
 install:
@@ -18,5 +18,5 @@ script:
     - sh test_cover.sh
 
 after_success:
-    - goveralls -coverprofile=.profile.cov 
+    - goveralls -coverprofile=.profile.cov -repotoken $COVERALLS_TOKEN
     - codecov
