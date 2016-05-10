@@ -18,5 +18,5 @@ script:
     - sh test_cover.sh
 
 after_success:
-    - goveralls -coverprofile=.profile.cov -repotoken $COVERALLS_TOKEN
+    - goveralls -coverprofile=.profile.cov 
     - codecov
