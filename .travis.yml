@@ -1,0 +1,22 @@
+language: go
+go: 1.4
+
+notifications:
+    email: false
+
+before_install:
+    - go version
+    - go get github.com/smartystreets/goconvey
+    - go get github.com/mattn/goveralls
+    - go get github.com/golang/tools/tree/master/cmd/cover
+    - pip install --user codecov
+
+install:
+    - go get -t -d -v ./...
+
+script:
+    - sh test_cover.sh
+
+after_success:
+    - goveralls -coverprofile=.profile.cov -repotoken $COVERALLS_TOKEN
+    - codecov
